@@ -1,0 +1,19 @@
+// Global, page wide button elements settings
+
+$use-silent-classes: false !default;
+$class-type: unquote('.');
+$namespace: $button-namespace;
+$bem-enabled: true !default;
+
+@if $use-silent-classes == true {
+	$class-type: unquote('%');
+}
+
+#{$class-type}#{$namespace} {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	border: 0;
+	@include box-sizing(border-box);
+	@include user-select(none);
+}

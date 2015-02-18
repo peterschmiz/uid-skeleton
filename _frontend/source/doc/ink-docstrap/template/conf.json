@@ -1,0 +1,31 @@
+{
+	"tags": {
+		"allowUnknownTags": true
+	},
+	"plugins": ["plugins/markdown"],
+	"templates": {
+		"cleverLinks": true,
+		"monospaceLinks": true,
+		"default": {
+			"outputSourceFiles": true
+		},
+		"systemName": "UID Skeleton - Javascript documentation",
+		"footer": "",
+		"copyright": "&copy; POSSIBLE",
+		"navType": "vertical",
+		"theme": "readable",
+		"linenums": true,
+		"collapseSymbols": true,
+		"inverseNav": false
+	},
+	"source": {
+		"include": [],
+		"exclude": [],
+		"includePattern": ".+\\.js(doc)?$",
+		"excludePattern": "(^|\\/|\\\\)temp"
+	},
+	"markdown": {
+		"parser": "gfm",
+		"hardwrap": true
+	}
+}

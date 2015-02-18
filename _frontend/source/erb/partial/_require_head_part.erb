@@ -1,0 +1,7 @@
+	<%= tag('script', {:type => nil}, true) -%>
+		<%= partial "partial/require_config" -%>
+		require( ['<%= settings.require_head_script %>'], function() {
+			/* TODO: setup additional init properties */
+			console.warn('Default skeleton head init! Check and modify it!');
+		});
+	<%= tag('/script', {:type => nil}, true) %>

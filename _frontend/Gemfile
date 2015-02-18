@@ -1,0 +1,23 @@
+source 'http://rubygems.org'
+
+# https://rubygems.org/gems/sass
+gem 'sass', '3.4.8'
+
+# https://rubygems.org/gems/bourbon
+gem 'bourbon', '4.0.2'
+
+# https://rubygems.org/gems/middleman-core
+gem 'middleman-core', '3.2.2'
+
+# https://rubygems.org/gems/rack-rewrite
+gem 'rack-rewrite', '1.5.0'
+
+# https://rubygems.org/gems/scss-lint
+gem 'scss-lint', '0.29.0'
+
+# https://rubygems.org/gems/hamlbars
+gem 'hamlbars', '2.1.1'
+
+# https://rubygems.org/gems/wdm
+# It will be installed only on Windows
+gem 'wdm', '0.1.0', :platforms => [:mswin, :mingw]

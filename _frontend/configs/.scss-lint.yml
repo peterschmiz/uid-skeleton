@@ -1,0 +1,275 @@
+# Default application configuration that all configurations inherit from.
+linters:
+  BorderZero:
+    enabled: true
+
+  CapitalizationInSelector:
+    enabled: true
+
+  ColorKeyword:
+    enabled: true
+
+  Comment:
+    enabled: true
+
+  DebugStatement:
+    enabled: true
+
+  DeclarationOrder:
+    enabled: false
+
+  DuplicateProperty:
+    enabled: true
+
+  ElsePlacement:
+    enabled: true
+    style: same_line # or 'new_line'
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: true
+
+  EmptyRule:
+    enabled: true
+
+  FinalNewline:
+    enabled: true
+    present: true
+
+  HexLength:
+    enabled: true
+    style: short # or 'long'
+
+  HexNotation:
+    enabled: true
+    style: lowercase # or 'uppercase'
+
+  HexValidation:
+    enabled: true
+
+  IdWithExtraneousSelector:
+    enabled: true
+
+  Indentation:
+    enabled: true
+    character: tab # or 'space'
+    width: 1
+
+  LeadingZero:
+    enabled: true
+    style: exclude_zero # or 'include_zero'
+
+  MergeableSelector:
+    enabled: true
+    force_nesting: true
+
+  NameFormat:
+    enabled: true
+    convention: BEM # or 'hyphenated_lowercase', or a regex pattern
+
+  NestingDepth:
+    enabled: true
+    max_depth: 7
+
+  PlaceholderInExtend:
+    enabled: false
+
+  PropertySortOrder:
+    enabled: true
+    ignore_unspecified: true
+    order: [
+	        "position",
+
+	        "content",
+            "quotes",
+            "counter-reset",
+            "counter-increment",
+
+	        "display",
+	        "visibility",
+	        "width",
+	        "min-width",
+	        "max-width",
+	        "height",
+	        "min-height",
+	        "max-height",
+
+	        "top",
+	        "bottom",
+	        "left",
+	        "right",
+
+	        "padding",
+	        "padding-top",
+	        "padding-bottom",
+	        "padding-left",
+	        "padding-right",
+	        "margin",
+	        "margin-top",
+	        "margin-bottom",
+	        "margin-left",
+	        "margin-right",
+
+            "overflow",
+            "overflow-x",
+            "overflow-y",
+            "clip",
+            "float",
+            "clear",
+
+	        "z-index",
+	        "opacity",
+	        "vertical-align",
+
+	        "font",
+	        "font-family",
+	        "font-size",
+	        "font-weight",
+	        "font-style",
+	        "font-variant",
+	        "font-smoothing",
+
+            "text-align",
+            "text-align-last",
+            "text-indent",
+            "text-overflow",
+            "text-transform",
+            "text-decoration",
+            "text-shadow",
+            "text-rendering",
+            "text-size-adjust",
+
+	        "line-height",
+	        "color",
+	        "letter-spacing",
+	        "white-space",
+            "list-style",
+            "list-style-position",
+            "list-style-type",
+            "list-style-image",
+	        "cursor",
+	        "pointer-events",
+	        "outline",
+
+	        "border",
+	        "border-top",
+	        "border-bottom",
+	        "border-left",
+	        "border-right",
+	        "border-width",
+	        "border-style",
+	        "border-color",
+	        "border-radius",
+
+            "background",
+            "background-blend-mode",
+            "background-color",
+            "background-image",
+            "background-repeat",
+            "background-attachment",
+            "background-position",
+            "background-position-x",
+            "background-position-y",
+            "background-origin",
+            "background-size",
+            "background-clip",
+
+            "box-shadow",
+
+            # Transforms
+            "transform",
+            "transform-function",
+            "transform-origin",
+            "transform-style",
+            "perspective",
+            "perspective-origin",
+            "backface-visibility",
+
+            # Transitions and Animations
+            "transition",
+            "transition-property",
+            "transition-duration",
+            "transition-timing-function",
+            "transition-delay",
+
+            "animation",
+            "animation-name",
+            "animation-duration",
+            "animation-timing-function",
+            "animation-delay",
+            "animation-iteration-count",
+            "animation-direction",
+            "animation-fill-mode",
+            "animation-play-state",
+
+			# Non-standard properties
+            "-webkit-appearance",
+            "-moz-appearance",
+            "-webkit-overflow-scrolling",
+            "-webkit-tap-highlight-color",
+            "-webkit-text-stroke"
+        ]
+
+  PropertySpelling:
+    enabled: true
+    extra_properties: []
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 5
+
+  SelectorFormat:
+    convention: '[a-zA-Z0-9]+'
+
+  Shorthand:
+    enabled: true
+
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: true
+
+  SingleLinePerSelector:
+    enabled: true
+
+  SpaceAfterComma:
+    enabled: false
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space # or 'no_space', or 'at_least_one_space', or 'aligned'
+
+  SpaceAfterPropertyName:
+    enabled: true
+
+  SpaceBeforeBrace:
+    enabled: true
+    allow_single_line_padding: false
+
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+
+  StringQuotes:
+    enabled: true
+    style: single_quotes # or double_quotes
+
+  TrailingSemicolon:
+    enabled: true
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UnnecessaryParentReference:
+    enabled: true
+
+  UrlFormat:
+    enabled: true
+
+  UrlQuotes:
+    enabled: true
+
+  ZeroUnit:
+    enabled: true
+
+  Compass::*:
+    enabled: false

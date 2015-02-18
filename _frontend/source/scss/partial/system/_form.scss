@@ -1,0 +1,48 @@
+// Global, page wide form elements settings
+
+$use-silent-classes: false !default;
+$class-type: unquote('.');
+$namespace: $form-namespace;
+$bem-enabled: true !default;
+
+@if $use-silent-classes == true {
+	$class-type: unquote('%');
+}
+
+#{$class-type}#{$namespace} {
+
+	// .form__error
+	@include element(error) {
+		display: none;
+
+		// .form__error--show
+		@include modifier(show) {
+			display: block;
+		}
+
+	}
+
+	// .form--show-error
+	@include modifier(show-error) {
+
+		#{$class-type}#{$namespace}__error {
+			display: block;
+		}
+
+	}
+
+	// .form--hide-input
+	@include modifier(hide-input) {
+		position: absolute;
+		visibility: hidden;
+		width: 1px;
+		height: 1px;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		opacity: .01;
+		color: transparent;
+		border: 0;
+	}
+
+}

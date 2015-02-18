@@ -1,0 +1,9 @@
+%script{ type: false }
+	require(['jquery2x'], function() {
+	\	console.warn('Default skeleton init! Check and modify it!');
+	\	require(['plugin'], function() {
+	\		require(['#{settings.require_main_script}'], function(app) {
+	\			app.init();
+	\		});
+	\	});
+	});

@@ -1,0 +1,32 @@
+		<% if !settings[:head_scripts].nil? -%>
+		<%
+			@primary_head_scripts = []
+			@secondary_head_scripts = []
+			@script_interface = []
+		-%>
+		<% end -%>
+		<% settings.head_scripts.each_with_index do |s, index| -%>
+		<%
+			@primary_head_scripts[index] = s.to_a[0][1][0]
+			@secondary_head_scripts[index] = (!(s.to_a[0][1][1].nil?) ? s.to_a[0][1][1] : false)
+			@script_interface[index] = s.to_a[0][0]
+		-%>
+		<% end %>
+		<%= tag('script', {:type => nil}, true) %>
+			var secondaryHeadScripts = <%= @secondary_head_scripts %>;
+			var scriptInterface = <%= @script_interface %>;
+
+			head.load(<%= @primary_head_scripts %>, function () {
+				var i;
+				var fallbackScripts = [];
+				for (i = 0; i < scriptInterface.length; i++) {
+					if (secondaryHeadScripts[i] && !window[scriptInterface[i]]) {
+						fallbackScripts.push(secondaryHeadScripts[i]);
+					}
+				}
+
+				head.load(fallbackScripts, function () {
+					APP.Head.getInstance();
+				});
+			});
+		<%= tag('/script', {:type => nil}, true) %>

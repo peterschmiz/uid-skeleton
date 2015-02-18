@@ -1,0 +1,52 @@
+# WebStorm settings
+.idea/
+
+# SublimeText
+*.sublime-workspace
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# SASS
+*.sass-cache
+
+# SVN
+.svn/
+
+# Node.js modules
+node_modules/
+
+# TEMP
+temp/*
+
+# DOC
+doc/*
+
+# Lock files
+*.lock
+
+# Gem
+.bundle/gems/*
+
+# Bower lib
+.bower/
+.bower_temp/
+bower_components/
+bower.json
+
+# SCSS linter report file
+scss-lint-report.xml
+
+# Config.rb
+config.rb
+

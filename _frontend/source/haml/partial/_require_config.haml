@@ -1,0 +1,22 @@
+- requirescripts = ""
+- settings.require_config_paths.each_with_index do |modulename, index|
+	- if modulename[1].is_a?(Array)
+		- requirescripts << "'" + modulename[0] + "': ["
+		- modulename[1].each_with_index do |paths, pathindex|
+			- requirescripts << "'" + paths + "'" + (pathindex < modulename[1].length - 1 ? ", " : "")
+		- requirescripts << "]" + (index < settings.require_config_paths.length - 1 ? ", " : "")
+		- requirescripts << "\n"
+	- else
+		- requirescripts << "'" + modulename[0] + "':" + "'" + modulename[1] + "'" + (index < settings.require_config_paths.length - 1 ? ", " : "")
+		- requirescripts << "\n"
+
+:javascript
+	requirejs.config({
+		'enforceDefine': false,
+		'baseUrl': '#{settings.require_config_baseurl}',
+		'paths': {
+			#{requirescripts}
+		},
+		#{settings.require_urlargs == 1 ? 'urlArgs: "bust=" +  (new Date()).getTime(),' : ''}
+		waitSeconds: 5
+	});

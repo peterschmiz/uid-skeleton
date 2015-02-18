@@ -1,0 +1,226 @@
+$use-silent-classes: false !default;
+$class-type: unquote(if($use-silent-classes, '%', '.'));
+
+$namespace: $block-namespace;
+$bem-enabled: true !default;
+$vertical-position-elements: 'div', 'p', 'span', 'a', 'input', 'label', 'button';
+
+#{$class-type}#{$namespace} {
+	position: relative;
+	display: block;
+	@include box-sizing(border-box);
+
+	@include modifier(full-width) {
+		width: 100%;
+	}
+
+	@include modifier(full-height) {
+		height: 100%;
+	}
+
+	@include modifier(full-size) {
+		@include size(100% 100%);
+	}
+
+	@include modifier(min-full-width) {
+		min-width: 100%;
+	}
+
+	@include modifier(min-full-height) {
+		min-height: 100%;
+	}
+
+	@include modifier(centered) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@each $size, $current-size in $spacing-sizes {
+
+		$size-name: if($size=='', '', '-' + $size);
+
+		//.block--padding, ...
+		@include modifier(#{$padding-namespace}#{$size-name}) {
+			padding: $current-size;
+		}
+
+		//.block--margin, ...
+		@include modifier(#{$margin-namespace}#{$size-name}) {
+			margin: $current-size;
+		}
+
+		//.block--hpadding, ...
+		@include modifier(h#{$padding-namespace}#{$size-name}) {
+			padding-left: $current-size;
+			padding-right: $current-size;
+		}
+
+		//.block--vpadding, ...
+		@include modifier(v#{$padding-namespace}#{$size-name}) {
+			padding-top: $current-size;
+			padding-bottom: $current-size;
+		}
+
+		//.block--hmargin, ...
+		@include modifier(h#{$margin-namespace}#{$size-name}) {
+			margin-left: $current-size;
+			margin-right: $current-size;
+		}
+
+		//.block--vmargin, ...
+		@include modifier(v#{$margin-namespace}#{$size-name}) {
+			margin-top: $current-size;
+			margin-bottom: $current-size;
+		}
+
+		//.block--padding-left, .block--margin-left, ...
+		@each $alignment in $alignments {
+			@include modifier(#{$padding-namespace}-#{$alignment}#{$size-name}) {
+				padding-#{$alignment}: $current-size;
+			}
+
+			@include modifier(#{$margin-namespace}-#{$alignment}#{$size-name}) {
+				margin-#{$alignment}: $current-size;
+			}
+		}
+	}
+
+	// VERTICAL ALIGNMENT
+	@include modifier(vp-full-width) {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%, -50%));
+	}
+
+	@include modifier(vp) {
+		white-space: nowrap;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			max-width: 100%;
+			height: 100%;
+			margin-left: get-rem(-4.2);
+			vertical-align: middle;
+			font: 0/0 a;
+			white-space: normal;
+		}
+
+	}
+
+	@include modifier(vp-top) {
+
+		&:before {
+			vertical-align: top;
+		}
+
+		@each $element in $vertical-position-elements {
+
+			& > #{$element} {
+				vertical-align: top;
+			}
+
+		}
+
+	}
+
+	@include modifier(vp-middle) {
+
+		&:before {
+			vertical-align: middle;
+		}
+
+		@each $element in $vertical-position-elements {
+
+			& > #{$element} {
+				vertical-align: middle;
+			}
+
+		}
+
+	}
+
+	@include modifier(vp-bottom) {
+
+		&:before {
+			vertical-align: bottom;
+		}
+
+		@each $element in $vertical-position-elements {
+
+			& > #{$element} {
+				vertical-align: bottom;
+			}
+
+		}
+
+	}
+
+	// ABSOLUTE POSITIONING
+	@include modifier(absolute) {
+		position: absolute;
+	}
+
+	// .block--to-top, ...
+	@each $alignment in $alignments {
+		@include modifier(to-#{$alignment}) {
+			@extend #{$class-type}#{$namespace}--absolute;
+			#{$alignment}: 0;
+		}
+	}
+
+	@include modifier(fill) {
+		@extend #{$class-type}#{$namespace}--absolute;
+		@extend #{$class-type}#{$namespace}--to-top;
+		@extend #{$class-type}#{$namespace}--to-bottom;
+		@extend #{$class-type}#{$namespace}--to-left;
+		@extend #{$class-type}#{$namespace}--to-right;
+	}
+
+	// SPECIAL MODIFIERS
+	// .block--display-none
+	@include modifier(display-none) {
+		display: none;
+	}
+
+	// .block--z-index-top
+	@each $z-index-key, $z-index-value in $z-indexes {
+
+		@include modifier('z-index-' + $z-index-key) {
+			z-index: $z-index-value;
+		}
+
+	}
+
+	// .block--inline-block
+	@include modifier(inline-block) {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	// .block--va-top
+	@include modifier(va-top) {
+		vertical-align: top;
+	}
+
+	// .block--va-middle
+	@include modifier(va-middle) {
+		vertical-align: middle;
+	}
+
+	// .block--va-bottom
+	@include modifier(va-bottom) {
+		vertical-align: bottom;
+	}
+
+	// .block--overflow-hidden
+	@include modifier(overflow-hidden) {
+		overflow: hidden;
+	}
+
+	// COLOR MODIFIERS
+	// .block--bg-color, ...
+	@include bem-colorize(background-color, bg);
+
+}

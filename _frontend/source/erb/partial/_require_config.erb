@@ -1,0 +1,20 @@
+
+
+			requirejs.config({
+				'enforceDefine': false,
+				'baseUrl': '<%= settings.require_config_baseurl %>',
+				'paths': {
+					<%- settings.require_config_paths.each_with_index do |modulename, index| -%>
+						<% if modulename[1].is_a?(Array) %>
+							'<%= modulename[0] %>': [
+								<%- modulename[1].each_with_index do |paths, pathindex| -%>
+									'<%= paths -%>'<% if pathindex < modulename[1].length - 1 -%>,<% end %>
+								<%- end -%>
+							]<% if index < settings.require_config_paths.length - 1 -%>,<% end %>
+						<% else %>
+							'<%= modulename[0] %>': '<%= modulename[1] -%>'<% if index < settings.require_config_paths.length - 1 -%>,<% end %>
+						<%- end -%>
+					<%- end -%>
+				},
+				waitSeconds: 5
+			});

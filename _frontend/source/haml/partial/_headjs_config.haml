@@ -1,0 +1,31 @@
+- if !settings[:head_scripts].nil?
+
+	- primary_head_scripts = []
+	- secondary_head_scripts = []
+	- script_interface = []
+	- (settings.head_scripts).each{ |s| primary_head_scripts << s.to_a[0][1][0]; secondary_head_scripts << (!(s.to_a[0][1][1].nil?) ? s.to_a[0][1][1] : false ); script_interface << s.to_a[0][0];}
+
+	:javascript
+
+		var secondaryHeadScripts = #{secondary_head_scripts},
+			scriptInterface = #{script_interface},
+			needFallbackLoad = false,
+			i, fallbackScripts = [];
+
+		head.load(#{primary_head_scripts}, function () {
+			for (i = 0; i < scriptInterface.length; i++) {
+				if (secondaryHeadScripts[i] && !window[scriptInterface[i]]) {
+					fallbackScripts.push(secondaryHeadScripts[i]);
+					needFallbackLoad = true;
+				}
+			}
+
+			if (needFallbackLoad === false) {
+				APP.Head.getInstance();
+			} else {
+			  head.load(fallbackScripts, function () {
+				  APP.Head.getInstance();
+			  });
+			}
+
+		});

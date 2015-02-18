@@ -1,0 +1,41 @@
+define(['webfont_loader'], function () {
+
+	var APPHEAD = (function () {
+
+		var instance,
+			fontConfig = {
+				custom: {
+					families: ['LIST-YOUR-FONTS-HERE'],
+					urls: ['{{ASSET_PREFIX}}css/font.css'],
+					testStrings: {
+						'YOUR-ICON-FONT': 'l'
+					}
+				}
+			};
+
+		function init() {
+			loadWebFonts();
+		}
+
+		function loadWebFonts() {
+			WebFont.load(fontConfig);
+		}
+
+		return {
+
+			getInstance: function () {
+
+				if (!instance) {
+					instance = init();
+				}
+
+				return instance;
+			}
+
+		};
+
+	}());
+
+	APPHEAD.getInstance();
+
+});

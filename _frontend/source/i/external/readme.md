@@ -1,0 +1,1 @@
+## Placeholder - watch won't work on empty directories

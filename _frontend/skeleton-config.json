@@ -1,0 +1,348 @@
+{
+	"lastmodified": "2015-02-16 15:47:01",
+	"version": "1.1.7",
+	"projectInfos": {
+		"name": "UID skeleton",
+		"description": "Grunt based UID workflow tool",
+		"url": "http://gitlab.dmz/frontend/skeleton",
+		"dev": {
+			"type": "HTML5",
+			"cdcs": "skeleton"
+		},
+		"repository": {
+			"type": "git",
+			"url": "git://gitlab.dmz/"
+		}
+	},
+	"bower": {
+		"tempDir": ".bower_temp"
+	},
+	"configs": {
+		"bower": "bower.json",
+		"npmPackage": "package.json"
+	},
+	"grunt": {
+		"defaultTasks": [
+			"project-info"
+		],
+		"initTempTasks": [
+			"clean-files:temp",
+			"js-compile",
+			"copy-files",
+			"scss-compile"
+		],
+		"buildTasks": [
+			"bumpup-files:minor",
+			"project-info",
+			"middleman",
+			"unit-test",
+			"copy-files:prod",
+			"js-compile:build",
+			"check-scss-syntax:prod",
+			"scss-compile:prod"
+		],
+		"gocdTasks": [
+			"unit-test",
+			"copy-files:prod",
+			"js-compile:build",
+			"scss-compile:prod"
+		],
+		"tasks": [
+			"grunt-concurrent",
+			"grunt-contrib-clean",
+			"grunt-contrib-concat",
+			"grunt-contrib-copy",
+			"grunt-contrib-jshint",
+			"grunt-contrib-sass",
+			"grunt-contrib-watch",
+			"grunt-bumpup",
+			"grunt-bower-task",
+			"grunt-closure-tools",
+			"grunt-extend-config",
+			"grunt-jsdoc",
+			"grunt-karma",
+			"grunt-scss-lint",
+			"grunt-strip-code",
+			"grunt-svgstore",
+			"grunt-svg2png",
+			"grunt-svgmin",
+			"grunt-text-replace"
+		]
+	},
+	"directories": {
+		"build": "../",
+		"buildCss": "css/",
+		"buildFont": "font/",
+		"buildImages": "i/",
+		"buildJs": "js/",
+		"buildStandaloneJs": "",
+		"buildRequireModul": "module/",
+		"configs": "configs/",
+		"data": "data/",
+		"doc": "code-documentation/",
+		"jstemp": ".jstemp/",
+		"source": "source/",
+		"staticHtml": "static/",
+		"tasks": "tasks/",
+		"temp": "source/temp/",
+		"tests": "source/tests/",
+		"tools": "tools/",
+		"webroot": "/"
+	},
+	"scripts": {
+		"naming": {
+			"app": "app.min.js",
+			"head": "head.min.js",
+			"plugin": "plugin.min.js"
+		},
+		"dependencies": {
+			"hammerjs": "~2.0.4",
+			"handlebars": "~2.0.0",
+			"headjs": "~1.0.3",
+			"jquery-legacy": "jquery#~1",
+			"jquery": "jquery#~2",
+			"jquery-ui": "~1.11.2",
+			"modernizr": "~2.8.3",
+			"requirejs": "~2.1.15",
+			"components-webfontloader": "~1.5.2"
+		},
+		"mapping": {
+			"lib": {
+				"standalone": {
+					"dest": "lib/standalone",
+					"dependencies": [
+						"headjs",
+						"jquery-legacy",
+						"jquery",
+						"modernizr",
+						"requirejs",
+						"components-webfontloader"
+					]
+				},
+				"concat": {
+					"dest": "lib/",
+					"dependencies": [
+						"handlebars",
+						"jquery-ui"
+					]
+				}
+			},
+			"plugin": {
+				"crngp": {
+					"dest": "plugin/crngp",
+					"dependencies": []
+				},
+				"iife": {
+					"dest": "plugin/iife",
+					"dependencies": [
+						"hammerjs"
+					]
+				},
+				"standalone": {
+					"dest": "plugin/standalone",
+					"dependencies": []
+				},
+				"concat": {
+					"dest": "plugin/",
+					"dependencies": []
+				}
+			},
+			"util": {
+				"concat": {
+					"dest": "util/",
+					"dependencies": []
+				}
+			}
+		}
+	},
+	"middleman": {
+		"templateMode": {
+			"engine": "haml",
+			"erbSettings": {
+				"trimMode": "-"
+			},
+			"hamlSettings": {
+				"ugly": false,
+				"format": ":html5"
+			}
+		},
+		"assetDirectories": {
+			"css_dir": "css",
+			"js_dir": "js",
+			"images_dir": "i",
+			"fonts_dir": "font"
+		},
+		"ignore": [
+			".idea/*",
+			".svn/*",
+			".sass-cache/*",
+			".bundle/*",
+			"node_modules/*",
+			"font/*",
+			"i/*",
+			"init/*",
+			"js/*",
+			"json/*",
+			"scss/*",
+			"tests/*",
+			"tools/*",
+			"readme.md"
+		],
+		"rewrite": {
+			"svgz": "gzip"
+		},
+		"layoutSettings": {
+			"language": "en",
+			"direction": "ltr",
+			"default_class": "no-js"
+		},
+		"ieSettings": {
+			"oldIeSupport": 0,
+			"supportClasses": [
+				"ie7 lt-ie8 lt-ie9 lt-ie10' => '<!--[if IE 7]>",
+				"ie8 lt-ie9 lt-ie10' => '<!--[if IE 8]>",
+				"ie9 lt-ie10' => '<!--[if IE 9]>",
+				"ie-new' => '<!--[if (gt IE 9)|!(IE)]><!-->"
+			]
+		},
+		"pageSettings": {
+			"page_title": "Page title",
+			"head_prefix": "og:http://ogp.me/ns# fb:http://ogp.me/ns/fb#",
+			"charset": "utf-8",
+			"viewport": "width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no",
+			"keywords": "keywords",
+			"description": "description",
+			"favicon_ico": "favicon"
+		},
+		"appleExtensions": {
+			"enabled": 1,
+			"touchIcons": [
+				":'57x57' => '#TOUCH_ICON_HERE'",
+				":'72x72' => '#TOUCH_ICON_HERE'",
+				":'76x76' => '#TOUCH_ICON_HERE'",
+				":'114x114' => '#TOUCH_ICON_HERE'",
+				":'120x120' => '#TOUCH_ICON_HERE'",
+				":'144x144' => '#TOUCH_ICON_HERE'",
+				":'152x152' => '#TOUCH_ICON_HERE'"
+			]
+		},
+		"msExtensions": {
+			"enabled": 1
+		},
+		"fbExtensions": {
+			"enabled": 1,
+			"ogTags": [
+				":'og:title' => 'OG TITLE'",
+				":'og:type' => 'website'",
+				":'og:url' => 'OG URL'",
+				":'og:image' => 'OG IMAGE'",
+				":'og:site_name' => 'OG SITE NAME'",
+				":'og:description' => 'OG DESCRIPTION'",
+				":'og:fb:app_id' => 'FB APP ID'"
+			]
+		},
+		"twitterExtensions": {
+			"enabled": 1,
+			"twitterTags": [
+				":'twitter:card' => 'summary'",
+				":'twitter:site' => '@site_username'",
+				":'twitter:title' => 'PAGE TITLE'",
+				":'twitter:description' => 'DESCRIPTION'",
+				":'twitter:creator' => '@creator_username'",
+				":'twitter:image:src' => 'IMAGE'",
+				":'twitter:domain' => 'DOMAIN'"
+			]
+		},
+		"styleSettings": {
+			"ieStyleEnabled": 0,
+			"additionalStylesEnabled": 0,
+			"additionalStyles": [
+				":'extra-1' => 'extra-1.css'",
+				":'extra-2' => 'extra-2.css'"
+			],
+			"appStyle": "app.css",
+			"appIeStyle": "app_ie_style",
+			"fontStyle": "font.css"
+		},
+		"javascriptSettings": {
+			"enabled": 1,
+			"singleLibraries": {
+				"jquery2x_single": "jquery",
+				"webfont_loader_single": "components-webfontloader",
+				"headjs_single": "headjs",
+				"modernizr_single": "modernizr"
+			},
+			"libraryUrls": {
+				"jquery2x": ":['//code.jquery.com/jquery-2.1.1.min', 'jquery']",
+				"jquery_ui": ":['//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min,' 'jquery-ui-1.10.4.min']",
+				"webfont_loader": ":['//ajax.googleapis.com/ajax/libs/webfont/1/webfont', 'components-webfontloader']",
+				"headjs": ":['//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.load.min', 'headjs']",
+				"modernizr": ":['//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min', 'modernizr']"
+			},
+			"pageScriptNames": {
+				"head_script": "head.min",
+				"app_script": "app.min",
+				"plugin_script": "plugin.min"
+			},
+			"headScripts": [
+				":{ 'Webfont' => [webfont_loader[0] + '.js', script_url + '/' + webfont_loader[1] + '.js'] }",
+				":{ 'Modernizr' => [modernizr[0] + '.js', script_url + '/' + modernizr[1] + '.js'] }",
+				":{ 'APP.Head' => [script_url + '/' + head_script + '.js'] }"
+			],
+			"pageScripts": [
+				":'app_script' => script_url + '/' + app_script + '.js'",
+				":'jquery2x' => script_url + '/' + jquery2x_single + '.js'",
+				":'plugin_script' => script_url + '/' + plugin_script + '.js'"
+			],
+			"requireJsSettings": {
+				"require_js_enabled": 0,
+				"require_config_only": 0,
+				"require_urlargs": 0,
+				"require_script": "requirejs.js",
+				"require_head_script": ":head_script",
+				"require_main_script": ":app_script",
+				"require_config_baseurl": ":script_url"
+			},
+			"requireConfig": [
+				":'jquery2x' => jquery2x",
+				":'modernizr' => modernizr",
+				":'plugin' => plugin_script",
+				":'webfont_loader' => webfont_loader"
+			]
+		},
+		"developmentSettings": {
+			"build": {
+				"activate": {
+					"relative_assets": 0,
+					"cache_buster": 0,
+					"minify_html": 0
+				},
+				"minifyHtmlConfig": [
+					":remove_intertag_spaces => true",
+					":remove_multi_spaces => true",
+					":preserve_line_breaks => true",
+					":remove_quotes => false"
+				]
+			},
+			"development": {
+				"activate": {
+					"livereload": 0,
+					"relative_assets": 0,
+					"cache_buster": 0,
+					"minify_html": 0
+				},
+				"minifyHtmlConfig": [
+					":remove_intertag_spaces => true",
+					":remove_multi_spaces => true",
+					":preserve_line_breaks => true",
+					":remove_quotes => false"
+				],
+				"liveReloadConfig": [
+					":port => '35729'",
+					":apply_js_live => true",
+					":apply_css_live => true"
+				]
+			}
+		}
+	}
+}

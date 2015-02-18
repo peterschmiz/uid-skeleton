@@ -1,0 +1,40 @@
+@if $icon-fonts != false {
+
+	$buster: '';
+
+	@if ($cache-busting) {
+		$buster: '?v=20140805';
+	}
+
+	@each $font in $icon-fonts {
+		$font-weight: nth($icon-font-weights, index($icon-fonts, $font));
+		$font-src: $icon-font-directory + $font;
+		@font-face {
+			font-family: $font;
+			src: url($font-src + '.eot');
+			src: url($font-src + '.eot?#iefix') format('embedded-opentype'), url($font-src + '.svgz'  + $buster + '#' + $font) format('svg'), url($font-src + '.svg' + $buster + '#' + $font) format('svg'), url($font-src + '.woff' + $buster) format('woff');
+			font-weight: $font-weight;
+			font-style: normal;
+		}
+	}
+
+	// Icon-font
+	%icon-font {
+		font-family: $icon-fonts;
+		font-weight: normal;
+		font-style: normal;
+		font-variant: normal;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-transform: none;
+		line-height: 1;
+		speak: none;
+	}
+
+	[data-icon]:before {
+		@extend %icon-font;
+		content: attr(data-icon);
+		line-height: 1;
+	}
+
+}

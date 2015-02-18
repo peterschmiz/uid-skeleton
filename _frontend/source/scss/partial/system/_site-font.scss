@@ -1,0 +1,27 @@
+@if $typo-fonts != false {
+
+	$buster: '';
+
+	@if ($cache-busting) {
+		$buster: '?v=20140404';
+	}
+
+	@each $name, $family in $typo-fonts {
+
+		@each $type, $variant in $family {
+			$font-src: nth($variant, 1);
+			$font-weight: nth($variant, 2);
+
+			@font-face {
+				font-family: $name + '-' + $type;
+				src: url($font-src + '.eot');
+				src: url($font-src + '.eot?#iefix') format('embedded-opentype'), url($font-src + '.woff' + $buster) format('woff'), url($font-src + '.svg'  + $buster + '#' + $name + '-' + $type) format('svgz'), url($font-src + '.svg' + $buster + '#' + $name + '-' + $type) format('svg');
+				font-weight: unquote($font-weight);
+				font-style: normal;
+			}
+
+		}
+
+	}
+
+}

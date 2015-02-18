@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<%#	<html> tag settings, conditional IE comments if enabled -%>
+<% if settings.old_ie_support == 1 -%>
+	<% settings.ie_support_classes.each do |version, condition| -%>
+		<%= condition -%><%= tag('html', {
+			:lang => settings.language,
+			:dir => settings.direction,
+			:class => settings.default_class + ' ' + version
+		}, true) -%><% if version == 'ie-new' -%><!--<![endif]--><% else %><![endif]--><% end %>
+	<% end -%>
+<% else %>
+	<%= tag('html', {:lang => settings.language, :dir => settings.direction, :class => settings.default_class}, true) -%>
+<% end %>
+
+<%#	<head> tag prefix if set -%>
+<% if settings.head_prefix != '' -%>
+	<head prefix="<%= settings.head_prefix %>">
+<% else %>
+	<head>
+<% end -%>
+
+		<%#	Basic meta tags %>
+		<%= tag('meta', {:charset => settings.charset}, true) %>
+		<%= tag('meta', {:name => 'http-equiv', :content => 'IE=Edge'}, true) %>
+		<%= content_tag(:title, settings.page_title) %>
+		<%= tag('meta', {:name => 'viewport', :content => settings.viewport}, true) %>
+		<%= tag('meta', {:name => 'keywords', :content => settings.keywords}, true) %>
+		<%= tag('meta', {:name => 'description', :content => settings.description}, true) %>
+		<%= tag('link', {:rel => 'icon', :href => settings.favicon_ico}, true) -%>
+
+		<%#	Facebook meta tags (OG tags) %>
+		<% if settings.enable_fb_extensions == 1 -%>
+			<% settings.og_tags.each do |key, value| %>
+				<%= tag('meta', {:property => key, :content => value}, true) -%>
+			<% end -%>
+		<% end -%>
+
+		<%#	Twitter meta tags %>
+		<% if settings.enable_twitter_extensions == 1 -%>
+			<% settings.twitter_tags.each do |key, value| %>
+				<%= tag('meta', {:name => key, :content => value}, true) -%>
+			<% end -%>
+		<% end -%>
+
+		<%#	Apple meta tags %>
+		<% if settings.enable_apple_extensions == 1 %>
+			<meta name="apple-mobile-web-app-status-bar-style" content="black">
+			<meta name="apple-mobile-web-app-capable" content="yes">
+			<meta name="apple-mobile-web-app-title" content="<%= settings.page_title %>">
+			<meta name="format-detection" content="telephone=no">
+			<% settings.touch_icons.each do |size, href| %>
+				<%= tag('link', {:rel => 'apple-touch-icon', :sizes => size, :href => href}, true) -%>
+			<% end -%>
+		<% end -%>
+
+		<%#	Microsoft meta tags %>
+		<% if settings.enable_ms_extensions == 1 %>
+		<!--[if gte IE 10]>
+			<meta name="application-name" content="<%= settings.page_title %>">
+			<meta name="msapplication-tooltip" content="<%= settings.description %>">
+			<meta name="msapplication-tilecolor" content="#TILECOLOR_HERE">
+			<meta name="msapplication-tileimage" content="#TILEIMAGE_HERE">
+		<![endif]-->
+		<% end %>
+
+		<%#	Stylesheet tags %>
+		<%= stylesheet_link_tag settings.app_style, :type => nil -%>
+		<% if settings.ie_style_enabled == 1 %>
+			<%= stylesheet_link_tag settings.app_ie_style, :type => nil -%>
+		<% end -%>
+
+		<%#	Additional stylesheet tags %>
+		<% if settings.additional_styles_enabled == 1 -%>
+			<% settings.additional_styles.each do |name, href| %>
+			<%= stylesheet_link_tag href, :type => nil -%>
+			<% end -%>
+		<% end -%>
+
+		<%#	Javascript settings, tags %>
+		<% if settings.enable_scripts == 1 -%>
+			<% if settings.require_js_enabled == 1 %>
+				<%= javascript_include_tag settings.require_script, :type => nil %>
+				<%= partial "partial/require_head_part" -%>
+			<% else %>
+				<% if settings.require_config_only == 1 %>
+					<%= partial "partial/require_config" -%>
+				<% end -%>
+				<%= javascript_include_tag settings.headjs_single + '.js', :type => nil %>
+				<%= partial "partial/headjs_config" -%>
+			<% end -%>
+		<% end %>
+
+	</head>
+	<body>
+
+		<%# Header -%>
+		<%= partial "module/header" -%>
+
+		<%# Navigation -%>
+		<%= partial "module/navigation" -%>
+
+		<%#	Main content -%>
+		<div class="page">
+		<%= yield -%>
+		</div>
+
+		<%# Footer -%>
+		<%= partial "module/footer" -%>
+
+		<%#	Bottom scripts %>
+		<% if settings.enable_scripts == 1 -%>
+			<% if settings.require_js_enabled == 1 -%>
+				<%= partial "partial/require_bottom_part" -%>
+			<% else %>
+				<%= partial "partial/headjs_config_bottom_part" -%>
+			<% end -%>
+		<% end %>
+
+		<% if development? -%>
+		<%= partial "partial/handlebars_templates" -%>
+		<% else %>
+		{{HANDLEBAR_TEMPLATES}}
+		<% end -%>
+
+	</body>
+</html>

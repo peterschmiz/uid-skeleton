@@ -1,0 +1,5 @@
+%script{ type: false }
+	= partial "partial/require_config"
+	require( ['#{settings.require_head_script}'], function() {
+	\	console.warn('Default skeleton head init! Check and modify it!');
+	});

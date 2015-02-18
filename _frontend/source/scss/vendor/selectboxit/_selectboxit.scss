@@ -1,0 +1,166 @@
+.selectboxit-container {
+	position: relative;
+	@include inline-block;
+	@include box-sizing(border-box);
+
+	.selectboxit {
+		position: relative;
+		display: block;
+		width: 220px;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		cursor: pointer;
+		@include box-sizing(border-box);
+
+		&.fill {
+			width: 100% !important;
+		}
+
+		&.selectboxit-open {
+			z-index: map-get($z-indexes, 'high') + 101;
+		}
+
+		&.selectboxit-disabled {
+			box-shadow: none;
+			cursor: default;
+			@include user-select(none);
+			opacity: .65;
+		}
+
+	}
+
+	.selectboxit-options {
+		position: absolute;
+		display: none;
+		min-width: 100%;
+		z-index: map-get($z-indexes, 'high') + 100;
+		margin: 1px 0 0;
+		padding: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+		text-align: left;
+		box-shadow: none;
+		list-style: none;
+		cursor: pointer;
+		@include box-sizing(border-box);
+
+		.selectboxit-disabled {
+			box-shadow: none;
+			cursor: default;
+			opacity: .65;
+			@include user-select(none);
+		}
+
+		a {
+			display: block;
+			line-height: 1em;
+
+			.selectboxit-option-icon-container {
+				display: none;
+			}
+
+		}
+
+	}
+
+	.selectboxit-option {
+		margin: 0;
+		text-indent: 0;
+		list-style-type: none;
+		@include box-sizing(border-box);
+
+		.selectboxit-option-anchor {
+			padding: 18px 18px;
+
+			&:hover {
+				text-decoration: none;
+			}
+
+		}
+
+		.selectboxit-action {
+			position: relative;
+			display: block;
+			height: 30px;
+			margin: 0 0 0 -18px;
+			padding: 0 18px 0 0;
+		}
+
+	}
+
+	.selectboxit-optgroup-header {
+		margin: 0;
+		font-weight: bold;
+		text-indent: 0;
+		list-style-type: none;
+
+		&:hover {
+			cursor: default;
+		}
+
+	}
+
+	.selectboxit-text {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 0 12px 0 18px;
+		white-space: nowrap !important;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.selectboxit-arrow-container {
+		position: absolute;
+		width: 32px;
+		top: 0;
+		right: 0;
+
+		.selectboxit-arrow {
+			position: absolute;
+			top: 50%;
+		}
+
+	}
+
+	.selectboxit-option-icon {
+		margin: 0;
+		padding: 0;
+		vertical-align: middle;
+	}
+
+	.selectboxit-option-icon-url {
+		float: left;
+		width: 18px;
+		height: 100%;
+	}
+
+	span {
+		display: block;
+		height: 30px;
+	}
+
+}
+
+.selectboxit-rendering {
+	position: absolute !important;
+	display: inline-block !important;
+	top: -9999px !important;
+	left: -9999px !important;
+	visibility: visible !important;
+}
+
+.selectboxit-default-arrow {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	top: 50%;
+	right: 8px;
+	margin: -7px 0 0 0;
+}
+
+.selectboxit-list {
+	z-index: 9;
+}

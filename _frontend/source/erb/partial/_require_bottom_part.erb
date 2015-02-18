@@ -1,0 +1,11 @@
+		<%= tag('script', {:type => nil}, true) %>
+			require(['jquery2x'], function() {
+				/* TODO: setup additional init properties */
+				console.warn('Default skeleton init! Check and modify it!');
+				require(['plugin'], function() {
+					require(['<%= settings.require_main_script %>'], function(app) {
+						app.init();
+					});
+				});
+			});
+		<%= tag('/script', {:type => nil}, true) -%>

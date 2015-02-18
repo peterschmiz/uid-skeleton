@@ -1,0 +1,3 @@
+%i.icon-wrapper{"class" => "#{src.downcase + ((defined? extraClass) ? ' ' + extraClass : '')}"}
+	%svg{"class" => (defined? svgClass) ? "#{svgClass}" : false, viewBox: "0 0 #{(defined? width) ? "#{width}" : "256"} #{(defined? height) ? "#{height}" : "256"}"}
+		%use{"xlink:href" => "#" + src.downcase}

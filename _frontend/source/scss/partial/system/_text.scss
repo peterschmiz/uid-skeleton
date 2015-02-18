@@ -1,0 +1,129 @@
+// Global, page wide typography settings
+$use-silent-classes: false !default;
+$class-type: unquote(if($use-silent-classes, '%', '.'));
+
+$namespace: $text-namespace;
+$bem-enabled: true !default;
+
+.wf {
+
+	.wf-loading & {
+		visibility: hidden;
+	}
+
+	.wf-inactive &,
+	.wf-active & {
+		visibility: visible;
+	}
+
+}
+
+#{$class-type}#{$namespace} {
+
+	// TEXT ALIGNMENTS
+	@each $alignment in (left, center, right) {
+
+		// .text--align-left, ...
+		@include modifier(align-#{$alignment}) {
+			text-align: $alignment;
+		}
+
+	}
+
+	// FONT SIZES
+	@each $unit in $font-size-units {
+
+		// .text--size-12, ...
+		@include modifier(size-#{$unit}) {
+			font-size: $unit * 1px;
+		}
+
+	}
+
+	// LINE HEIGHTS
+	@each $key, $value in $line-heights {
+
+		@include modifier(line-height-#{$key}) {
+			line-height: $value;
+		}
+
+	}
+
+	// FONT-FAMILIES (SYSTEM & WEB-FONT)
+	@include modifier(system-font) {
+		font-family: $base-fallback-font;
+	}
+
+	// WEB FONTS
+	@each $name, $family in $typo-fonts {
+
+		@each $type, $variant in $family {
+			$font-src: nth($variant, 1);
+			$font-weight: unquote(nth($variant, 2));
+			$font-name: $name + '-' + $type;
+
+			@include modifier(to-lower-case($font-name)) {
+				font-family: $font-name, $base-fallback-font;
+				font-weight: $font-weight;
+			}
+
+		}
+
+		$actual-row: nth($family, 1);
+		$actual-row-value: nth($actual-row, 2);
+		$default-weight: unquote(nth($actual-row-value, 2));
+		$default-family: $name + '-' $default-weight;
+
+		// .text--font-1, .text--font-1-bold
+		@include modifier(to-lower-case($name)) {
+			font-family: $default-family, $base-fallback-font;
+			font-weight: $default-weight;
+		}
+
+	}
+
+	// FONT STYLES, TRANSFORMATIONS, DECORATIONS
+	@include modifier(italic) {
+		font-style: italic;
+	}
+
+	@include modifier(normal) {
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@include modifier(striked) {
+		text-decoration: line-through;
+	}
+
+	@include modifier(no-decoration) {
+		text-decoration: none;
+	}
+
+	@include modifier(underline) {
+		text-decoration: underline;
+	}
+
+	@include modifier(uppercase) {
+		text-transform: uppercase;
+	}
+
+	@include modifier(lowercase) {
+		text-transform: lowercase;
+	}
+
+	@include modifier(no-transform) {
+		text-transform: none;
+	}
+
+	@include modifier(no-wrap) {
+		white-space: nowrap;
+	}
+
+	@include modifier(wrap) {
+		white-space: normal;
+	}
+
+	@include bem-colorize(color, color);
+
+}

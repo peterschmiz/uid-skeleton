@@ -1,0 +1,24 @@
+// Grid settings (palm = mobile, lap = laptop, desk = desktop), used by CSSWizardy
+
+// Enable 'push' & 'pull' in the CSSWizardy grid
+$push: false;
+$pull: false;
+
+// Set CSSWizardy gutter size (narrow is half of it, wide is double)
+$gutter: $base-spacing;
+
+// Should CSSWizardy work in responsive mode (having palm, lap, desk etc. classes generated)
+$responsive: true;
+
+// Setup CSSWizardy breakpoints
+
+$breakpoints: (
+		'tablet-portrait' '(max-width: 768px)',
+		'tablet-landscape' '(min-width: 769px) and (max-width: 1024px)',
+		'laptop' '(min-width: 1025px) and (max-width: 1280px)',
+		'desk' '(min-width: 1281px)'
+) !default;
+
+$breakpoint-has-widths: ('tablet-portrait', 'tablet-landscape', 'laptop', 'desk') !default;
+$breakpoint-has-push: ('tablet-portrait', 'tablet-landscape', 'laptop', 'desk') !default;
+$breakpoint-has-pull: ('tablet-portrait', 'tablet-landscape', 'laptop', 'desk') !default;

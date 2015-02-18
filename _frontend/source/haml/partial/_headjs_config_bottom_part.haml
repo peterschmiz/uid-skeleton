@@ -1,0 +1,9 @@
+- if !settings[:page_scripts].nil?
+
+	- primary_page_scripts = []
+	- (settings.page_scripts).each{ |s| primary_page_scripts << s[1];}
+
+	:javascript
+		head.load(#{primary_page_scripts}, function () {
+			APP.Main.getInstance();
+		});

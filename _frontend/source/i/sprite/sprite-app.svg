@@ -1,0 +1,10 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol viewBox="0 0 256 256" id="icon-star">
+        <title>icon-star</title>
+        <path fill="#FFB600" d="M68.4 150.6l-60-60.4 89-.1L128.1 0l29.8 90.5 89.7-.2-59.3 59.8L217.7 256l-89.6-45.6-90 45.6 30.3-105.4z" />
+    </symbol>
+    <symbol viewBox="0 0 256 256" id="icon-star">
+        <title>icon-star</title>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M68.4 150.59L8.45 90.21l89.01-.05L128.12 0l29.77 90.54 89.67-.19-59.25 59.77L217.69 256l-89.57-45.64L38.08 256 68.4 150.59z" />
+    </symbol>
+</svg>

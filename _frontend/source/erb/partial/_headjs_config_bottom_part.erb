@@ -1,0 +1,11 @@
+		<% if !settings[:head_scripts].nil? -%>
+
+		<%= tag('script', {:type => nil}, true) %>
+			head.load(<% settings.page_scripts.each_with_index do |pagescript, index| %>
+				'<%= pagescript[1] %>'<% if index < settings.page_scripts.length - 1 -%>, <% end -%><%- end -%>, function() {
+				/* TODO: Place app init call here! */
+				APP.Main.getInstance();
+			});
+		<%= tag('/script', {:type => nil}, true) %>
+
+		<% end %>
